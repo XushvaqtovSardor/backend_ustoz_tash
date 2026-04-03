@@ -5,24 +5,27 @@ import { RolesGuard } from 'src/common/guards/roles-guard';
 import { Role } from '@prisma/client';
 import { Roles } from 'src/common/decorators/roles';
 import { CreateRoomDto } from './dto/create.room.dto';
-import { ApiBearerAuth } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 
 @Controller('rooms')
+@ApiTags('Rooms')
 @ApiBearerAuth()
 export class RoomsController {
-    constructor(private readonly roomService : RoomsService){}
+    constructor(private readonly roomService: RoomsService) { }
 
-     @UseGuards(AuthGuard, RolesGuard)
-        @Roles(Role.ADMIN, Role.SUPERADMIN)
-        @Get("all")
-        getAllRoom() {
-            return this.roomService.getAllRoom()
-        }
-    
-        @UseGuards(AuthGuard, RolesGuard)
-        @Roles(Role.ADMIN, Role.SUPERADMIN)
-        @Post()
-        createRoom(@Body() payload: CreateRoomDto) {
-            return this.roomService.createRoom(payload)
-        }
+    @UseGuards(AuthGuard, RolesGuard)
+    @Roles(Role.ADMIN, Role.SUPERADMIN)
+    @Get("all")
+    @ApiOperation({ summary: 'Get all active rooms' })
+    getAllRoom() {
+        return this.roomService.getAllRoom()
+    }
+
+    @UseGuards(AuthGuard, RolesGuard)
+    @Roles(Role.ADMIN, Role.SUPERADMIN)
+    @Post()
+    @ApiOperation({ summary: 'Create new room' })
+    createRoom(@Body() payload: CreateRoomDto) {
+        return this.roomService.createRoom(payload)
+    }
 }
