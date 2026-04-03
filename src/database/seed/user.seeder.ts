@@ -25,6 +25,7 @@ export class UserSeeder implements OnModuleInit {
             })
 
             Logger.log("✅ SuperAdmin created")
+            return
         }
         Logger.log("✅ SuperAdmin already exist")
     }

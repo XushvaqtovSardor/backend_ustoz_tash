@@ -35,6 +35,7 @@ let UserSeeder = class UserSeeder {
                 }
             });
             common_1.Logger.log("✅ SuperAdmin created");
+            return;
         }
         common_1.Logger.log("✅ SuperAdmin already exist");
     }

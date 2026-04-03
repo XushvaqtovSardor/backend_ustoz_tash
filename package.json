@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "nest build && tsc-alias -p tsconfig.build.json",
-    "start": "node dist/src/main.js",
+    "build": "prisma generate && nest build && tsc-alias -p tsconfig.build.json",
+    "start": "prisma db push && node dist/src/main.js",
     "start:dev": "nest start --watch"
   },
   "keywords": [],
