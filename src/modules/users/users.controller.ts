@@ -1,6 +1,8 @@
 import { Body, Controller, Delete, Get, Param, Post, Put, UploadedFile, UseGuards, UseInterceptors } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create.user.dto';
+import { RegisterDto } from './dto/register.dto';
+import { LoginDto } from './dto/login.dto';
 import { AuthGuard } from 'src/common/guards/jwt-auth.guard';
 import { Roles } from 'src/common/decorators/roles';
 import { Role } from '@prisma/client';
@@ -9,19 +11,6 @@ import { ApiBearerAuth, ApiBody, ApiConsumes, ApiOperation, ApiTags } from '@nes
 import { FileInterceptor } from "@nestjs/platform-express"
 import { diskStorage } from 'multer';
 import { UpdateUserDto } from './dto/update.user.dto';
-
-// DTO for Register
-class RegisterDto {
-    email: string;
-    password: string;
-    fullName: string;
-}
-
-// DTO for Login
-class LoginDto {
-    email: string;
-    password: string;
-}
 
 @Controller('auth')
 export class AuthController {

@@ -1,15 +1,8 @@
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create.user.dto';
+import { RegisterDto } from './dto/register.dto';
+import { LoginDto } from './dto/login.dto';
 import { UpdateUserDto } from './dto/update.user.dto';
-declare class RegisterDto {
-    email: string;
-    password: string;
-    fullName: string;
-}
-declare class LoginDto {
-    email: string;
-    password: string;
-}
 export declare class AuthController {
     private readonly userService;
     constructor(userService: UsersService);
@@ -85,4 +78,3 @@ export declare class UsersController {
     }>;
     deleteUser(id: string): Promise<void>;
 }
-export {};

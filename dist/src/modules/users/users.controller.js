@@ -16,6 +16,8 @@ exports.UsersController = exports.AuthController = void 0;
 const common_1 = require("@nestjs/common");
 const users_service_1 = require("./users.service");
 const create_user_dto_1 = require("./dto/create.user.dto");
+const register_dto_1 = require("./dto/register.dto");
+const login_dto_1 = require("./dto/login.dto");
 const jwt_auth_guard_1 = require("../../common/guards/jwt-auth.guard");
 const roles_1 = require("../../common/decorators/roles");
 const client_1 = require("@prisma/client");
@@ -24,10 +26,6 @@ const swagger_1 = require("@nestjs/swagger");
 const platform_express_1 = require("@nestjs/platform-express");
 const multer_1 = require("multer");
 const update_user_dto_1 = require("./dto/update.user.dto");
-class RegisterDto {
-}
-class LoginDto {
-}
 let AuthController = class AuthController {
     constructor(userService) {
         this.userService = userService;
@@ -42,20 +40,20 @@ let AuthController = class AuthController {
 exports.AuthController = AuthController;
 __decorate([
     (0, swagger_1.ApiOperation)({ summary: 'Register user' }),
-    (0, swagger_1.ApiBody)({ type: RegisterDto }),
+    (0, swagger_1.ApiBody)({ type: register_dto_1.RegisterDto }),
     (0, common_1.Post)('register'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [RegisterDto]),
+    __metadata("design:paramtypes", [register_dto_1.RegisterDto]),
     __metadata("design:returntype", Promise)
 ], AuthController.prototype, "register", null);
 __decorate([
     (0, swagger_1.ApiOperation)({ summary: 'Login user' }),
-    (0, swagger_1.ApiBody)({ type: LoginDto }),
+    (0, swagger_1.ApiBody)({ type: login_dto_1.LoginDto }),
     (0, common_1.Post)('login'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [LoginDto]),
+    __metadata("design:paramtypes", [login_dto_1.LoginDto]),
     __metadata("design:returntype", Promise)
 ], AuthController.prototype, "login", null);
 exports.AuthController = AuthController = __decorate([
