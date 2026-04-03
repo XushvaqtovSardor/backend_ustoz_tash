@@ -2,13 +2,18 @@ import { config } from "dotenv";
 import { Pool } from "pg";
 config()
 
-const pool = new Pool({
-    port:process.env.DB_PORT,
-    host:process.env.DB_HOST,
-    user:process.env.DB_USER,
-    database:process.env.DB_DATABASE,
-    password:process.env.DB_PASSWORD
-}) 
+const connectionString = process.env.DATABASE_URL?.trim()
+
+if (!connectionString) {
+    throw new Error("DATABASE_URL topilmadi. .env faylga ulanish URL ni kiriting.")
+}
+
+const poolConfig = {
+    connectionString,
+    ssl: { rejectUnauthorized: false }
+}
+
+const pool = new Pool(poolConfig)
 
 async function db_connect() {
     try {
