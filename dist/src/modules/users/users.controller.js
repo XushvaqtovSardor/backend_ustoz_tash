@@ -85,6 +85,8 @@ __decorate([
     (0, swagger_1.ApiOperation)({
         summary: `${client_1.Role.SUPERADMIN}, ${client_1.Role.ADMIN}`
     }),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.AuthGuard, roles_guard_1.RolesGuard),
+    (0, roles_1.Roles)("ADMIN", "SUPERADMIN"),
     (0, swagger_1.ApiConsumes)("multipart/form-data"),
     (0, swagger_1.ApiBody)({
         schema: {
@@ -126,6 +128,8 @@ __decorate([
 ], UsersController.prototype, "getAllUser", null);
 __decorate([
     (0, common_1.Get)(':id'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.AuthGuard, roles_guard_1.RolesGuard),
+    (0, roles_1.Roles)("ADMIN", "SUPERADMIN"),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
@@ -133,6 +137,8 @@ __decorate([
 ], UsersController.prototype, "getOneUser", null);
 __decorate([
     (0, common_1.Put)(':id'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.AuthGuard, roles_guard_1.RolesGuard),
+    (0, roles_1.Roles)("ADMIN", "SUPERADMIN"),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -141,6 +147,8 @@ __decorate([
 ], UsersController.prototype, "updateUser", null);
 __decorate([
     (0, common_1.Delete)(':id'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.AuthGuard, roles_guard_1.RolesGuard),
+    (0, roles_1.Roles)("ADMIN", "SUPERADMIN"),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
@@ -148,8 +156,6 @@ __decorate([
 ], UsersController.prototype, "deleteUser", null);
 exports.UsersController = UsersController = __decorate([
     (0, common_1.Controller)('users'),
-    (0, common_1.UseGuards)(jwt_auth_guard_1.AuthGuard, roles_guard_1.RolesGuard),
-    (0, roles_1.Roles)("ADMIN", "SUPERADMIN"),
     (0, swagger_1.ApiBearerAuth)(),
     __metadata("design:paramtypes", [users_service_1.UsersService])
 ], UsersController);

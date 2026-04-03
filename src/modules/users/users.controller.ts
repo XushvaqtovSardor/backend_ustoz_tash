@@ -32,8 +32,6 @@ export class AuthController {
 }
 
 @Controller('users')
-@UseGuards(AuthGuard, RolesGuard)
-@Roles("ADMIN", "SUPERADMIN")
 @ApiBearerAuth()
 export class UsersController {
     constructor(private readonly userService: UsersService) { }
@@ -41,6 +39,8 @@ export class UsersController {
     @ApiOperation({
         summary: `${Role.SUPERADMIN}, ${Role.ADMIN}`
     })
+    @UseGuards(AuthGuard, RolesGuard)
+    @Roles("ADMIN", "SUPERADMIN")
     @ApiConsumes("multipart/form-data")
     @ApiBody({
         schema: {
@@ -81,16 +81,22 @@ export class UsersController {
     }
 
     @Get(':id')
+    @UseGuards(AuthGuard, RolesGuard)
+    @Roles("ADMIN", "SUPERADMIN")
     getOneUser(@Param('id') id: string) {
         return this.userService.getOneUser(+id);
     }
 
     @Put(':id')
+    @UseGuards(AuthGuard, RolesGuard)
+    @Roles("ADMIN", "SUPERADMIN")
     updateUser(@Param('id') id: string, @Body() payload: UpdateUserDto) {
         return this.userService.updateUser(+id, payload);
     }
 
     @Delete(':id')
+    @UseGuards(AuthGuard, RolesGuard)
+    @Roles("ADMIN", "SUPERADMIN")
     deleteUser(@Param('id') id: string) {
         return this.userService.deleteUser(+id)
     }
