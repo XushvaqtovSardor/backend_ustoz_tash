@@ -5,10 +5,42 @@ import { AuthGuard } from 'src/common/guards/jwt-auth.guard';
 import { Roles } from 'src/common/decorators/roles';
 import { Role } from '@prisma/client';
 import { RolesGuard } from 'src/common/guards/roles-guard';
-import { ApiBearerAuth, ApiBody, ApiConsumes, ApiOperation } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiBody, ApiConsumes, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { FileInterceptor } from "@nestjs/platform-express"
 import { diskStorage } from 'multer';
 import { UpdateUserDto } from './dto/update.user.dto';
+
+// DTO for Register
+class RegisterDto {
+    email: string;
+    password: string;
+    fullName: string;
+}
+
+// DTO for Login
+class LoginDto {
+    email: string;
+    password: string;
+}
+
+@Controller('auth')
+export class AuthController {
+    constructor(private readonly userService: UsersService) { }
+
+    @ApiOperation({ summary: 'Register user' })
+    @ApiBody({ type: RegisterDto })
+    @Post('register')
+    async register(@Body() body: RegisterDto) {
+        return this.userService.register(body.email, body.password, body.fullName);
+    }
+
+    @ApiOperation({ summary: 'Login user' })
+    @ApiBody({ type: LoginDto })
+    @Post('login')
+    async login(@Body() body: LoginDto) {
+        return this.userService.login(body.email, body.password);
+    }
+}
 
 @Controller('users')
 @UseGuards(AuthGuard, RolesGuard)

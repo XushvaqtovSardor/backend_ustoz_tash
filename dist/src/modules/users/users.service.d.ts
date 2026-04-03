@@ -49,4 +49,28 @@ export declare class UsersService {
         message: string;
     }>;
     deleteUser(id: number): Promise<void>;
+    register(email: string, password: string, fullName: string, photo?: string): Promise<{
+        success: boolean;
+        message: string;
+        data: {
+            id: number;
+            email: string;
+            fullName: string;
+            photo: string | null;
+            accessToken: any;
+            refreshToken: any;
+        };
+    }>;
+    login(email: string, password: string): Promise<{
+        success: boolean;
+        message: string;
+        data: {
+            id: number;
+            email: string;
+            fullName: string;
+            photo: string | null;
+            accessToken: any;
+            refreshToken: any;
+        };
+    }>;
 }

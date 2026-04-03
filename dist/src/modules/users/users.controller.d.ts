@@ -1,6 +1,43 @@
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create.user.dto';
 import { UpdateUserDto } from './dto/update.user.dto';
+declare class RegisterDto {
+    email: string;
+    password: string;
+    fullName: string;
+}
+declare class LoginDto {
+    email: string;
+    password: string;
+}
+export declare class AuthController {
+    private readonly userService;
+    constructor(userService: UsersService);
+    register(body: RegisterDto): Promise<{
+        success: boolean;
+        message: string;
+        data: {
+            id: number;
+            email: string;
+            fullName: string;
+            photo: string | null;
+            accessToken: any;
+            refreshToken: any;
+        };
+    }>;
+    login(body: LoginDto): Promise<{
+        success: boolean;
+        message: string;
+        data: {
+            id: number;
+            email: string;
+            fullName: string;
+            photo: string | null;
+            accessToken: any;
+            refreshToken: any;
+        };
+    }>;
+}
 export declare class UsersController {
     private readonly userService;
     constructor(userService: UsersService);
@@ -48,3 +85,4 @@ export declare class UsersController {
     }>;
     deleteUser(id: string): Promise<void>;
 }
+export {};

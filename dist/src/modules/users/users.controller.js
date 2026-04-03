@@ -12,7 +12,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UsersController = void 0;
+exports.UsersController = exports.AuthController = void 0;
 const common_1 = require("@nestjs/common");
 const users_service_1 = require("./users.service");
 const create_user_dto_1 = require("./dto/create.user.dto");
@@ -24,6 +24,44 @@ const swagger_1 = require("@nestjs/swagger");
 const platform_express_1 = require("@nestjs/platform-express");
 const multer_1 = require("multer");
 const update_user_dto_1 = require("./dto/update.user.dto");
+class RegisterDto {
+}
+class LoginDto {
+}
+let AuthController = class AuthController {
+    constructor(userService) {
+        this.userService = userService;
+    }
+    async register(body) {
+        return this.userService.register(body.email, body.password, body.fullName);
+    }
+    async login(body) {
+        return this.userService.login(body.email, body.password);
+    }
+};
+exports.AuthController = AuthController;
+__decorate([
+    (0, swagger_1.ApiOperation)({ summary: 'Register user' }),
+    (0, swagger_1.ApiBody)({ type: RegisterDto }),
+    (0, common_1.Post)('register'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [RegisterDto]),
+    __metadata("design:returntype", Promise)
+], AuthController.prototype, "register", null);
+__decorate([
+    (0, swagger_1.ApiOperation)({ summary: 'Login user' }),
+    (0, swagger_1.ApiBody)({ type: LoginDto }),
+    (0, common_1.Post)('login'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [LoginDto]),
+    __metadata("design:returntype", Promise)
+], AuthController.prototype, "login", null);
+exports.AuthController = AuthController = __decorate([
+    (0, common_1.Controller)('auth'),
+    __metadata("design:paramtypes", [users_service_1.UsersService])
+], AuthController);
 let UsersController = class UsersController {
     constructor(userService) {
         this.userService = userService;
