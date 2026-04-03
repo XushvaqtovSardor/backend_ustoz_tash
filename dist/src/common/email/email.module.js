@@ -8,35 +8,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.MailerModule = void 0;
 const common_1 = require("@nestjs/common");
-const mailer_1 = require("@nestjs-modules/mailer");
-const handlebars_adapter_1 = require("@nestjs-modules/mailer/dist/adapters/handlebars.adapter");
-const path_1 = require("path");
+const email_service_1 = require("./email.service");
 let MailerModule = class MailerModule {
 };
 exports.MailerModule = MailerModule;
 exports.MailerModule = MailerModule = __decorate([
     (0, common_1.Module)({
-        imports: [
-            mailer_1.MailerModule.forRoot({
-                transport: {
-                    service: "gmail",
-                    auth: {
-                        user: "abdukhoshim99@gmail.com",
-                        pass: "wlyruphmkpqtomzy"
-                    }
-                },
-                defaults: {
-                    from: `<n25_crm> abdukhoshim99@gmail.com`
-                },
-                template: {
-                    dir: (0, path_1.join)(process.cwd(), "template"),
-                    adapter: new handlebars_adapter_1.HandlebarsAdapter(),
-                    options: {
-                        strict: true
-                    }
-                }
-            })
-        ]
+        providers: [email_service_1.MailerService],
+        exports: [email_service_1.MailerService],
     })
 ], MailerModule);
 //# sourceMappingURL=email.module.js.map

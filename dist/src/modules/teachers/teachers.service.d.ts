@@ -1,7 +1,7 @@
-import { PrismaService } from 'src/database/prisma.service';
+import { PrismaService } from '../../database/prisma.service';
 import { CreateTeacherDto } from './dto/create.teacher.dto';
 import { UpdateTeacherDto } from './dto/update.teacher.dto';
-import { MailerService } from 'src/common/email/email.service';
+import { MailerService } from '../../common/email/email.service';
 export declare class TeachersService {
     private prisma;
     private mailerService;
@@ -18,7 +18,7 @@ export declare class TeachersService {
             password: string;
             position: string;
             photo: string | null;
-            status: import("@prisma/client").$Enums.UserStatus;
+            status: import(".prisma/client").$Enums.UserStatus;
             created_at: Date;
             updated_at: Date;
             id: number;
@@ -33,7 +33,7 @@ export declare class TeachersService {
             password: string;
             position: string;
             photo: string | null;
-            status: import("@prisma/client").$Enums.UserStatus;
+            status: import(".prisma/client").$Enums.UserStatus;
             created_at: Date;
             updated_at: Date;
             id: number;

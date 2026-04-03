@@ -1,2 +1,2 @@
 export declare function hashPassword(password: string): Promise<string>;
-export declare function comparePassword(oldPass: string, pass: string): Promise<boolean>;
+export declare function comparePassword(plainPassword: string, hashedPassword: string): Promise<boolean>;

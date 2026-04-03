@@ -49,7 +49,7 @@ export class TeachersController {
         @Body() payload: CreateTeacherDto,
         @UploadedFile() file: Express.Multer.File
     ) {
-        return this.teachersService.createTeacher(payload, file.filename)
+        return this.teachersService.createTeacher(payload, file?.filename)
     }
 
     @UseGuards(AuthGuard, RolesGuard)
@@ -64,13 +64,13 @@ export class TeachersController {
         return this.teachersService.getOneTeacher(+id);
     }
 
-    @Put()
+    @Put(':id')
     updateTeacher(@Param('id') id: string, @Body() payload: UpdateTeacherDto) {
         return this.teachersService.updateTeacher(+id, payload);
     }
 
-    @Delete()
+    @Delete(':id')
     deleteTeacher(@Param('id') id: string) {
-
+        return this.teachersService.deleteTeacher(+id)
     }
 }

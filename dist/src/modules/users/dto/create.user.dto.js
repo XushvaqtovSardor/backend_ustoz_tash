@@ -14,13 +14,6 @@ const swagger_1 = require("@nestjs/swagger");
 const client_1 = require("@prisma/client");
 const class_validator_1 = require("class-validator");
 class CreateUserDto {
-    fullName;
-    email;
-    password;
-    position;
-    hire_date;
-    role;
-    address;
 }
 exports.CreateUserDto = CreateUserDto;
 __decorate([

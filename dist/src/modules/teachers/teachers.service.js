@@ -15,8 +15,6 @@ const bcrypt_1 = require("../../common/config/bcrypt");
 const prisma_service_1 = require("../../database/prisma.service");
 const email_service_1 = require("../../common/email/email.service");
 let TeachersService = class TeachersService {
-    prisma;
-    mailerService;
     constructor(prisma, mailerService) {
         this.prisma = prisma;
         this.mailerService = mailerService;

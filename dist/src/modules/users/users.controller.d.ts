@@ -16,10 +16,10 @@ export declare class UsersController {
             password: string;
             position: string;
             hire_date: Date;
-            role: import("@prisma/client").$Enums.Role;
+            role: import(".prisma/client").$Enums.Role;
             address: string | null;
             photo: string | null;
-            status: import("@prisma/client").$Enums.UserStatus;
+            status: import(".prisma/client").$Enums.UserStatus;
             created_at: Date;
             updated_at: Date;
             id: number;
@@ -33,10 +33,10 @@ export declare class UsersController {
             password: string;
             position: string;
             hire_date: Date;
-            role: import("@prisma/client").$Enums.Role;
+            role: import(".prisma/client").$Enums.Role;
             address: string | null;
             photo: string | null;
-            status: import("@prisma/client").$Enums.UserStatus;
+            status: import(".prisma/client").$Enums.UserStatus;
             created_at: Date;
             updated_at: Date;
             id: number;
@@ -46,5 +46,5 @@ export declare class UsersController {
         success: boolean;
         message: string;
     }>;
-    deleteUser(id: string): void;
+    deleteUser(id: string): Promise<void>;
 }

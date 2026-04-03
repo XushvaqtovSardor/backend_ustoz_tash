@@ -22,7 +22,6 @@ const roles_1 = require("../../common/decorators/roles");
 const create_group_dto_1 = require("./dto/create.group.dto");
 const swagger_1 = require("@nestjs/swagger");
 let GroupsController = class GroupsController {
-    groupService;
     constructor(groupService) {
         this.groupService = groupService;
     }
@@ -47,7 +46,7 @@ __decorate([
     __param(0, (0, common_1.Param)("groupId", common_1.ParseIntPipe)),
     __param(1, (0, common_1.Req)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number, Request]),
+    __metadata("design:paramtypes", [Number, Object]),
     __metadata("design:returntype", void 0)
 ], GroupsController.prototype, "getGroupLessons", null);
 __decorate([
@@ -65,8 +64,7 @@ __decorate([
     __param(0, (0, common_1.Body)()),
     __param(1, (0, common_1.Req)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [create_group_dto_1.CreateGroupDto,
-        Request]),
+    __metadata("design:paramtypes", [create_group_dto_1.CreateGroupDto, Object]),
     __metadata("design:returntype", void 0)
 ], GroupsController.prototype, "createGroup", null);
 exports.GroupsController = GroupsController = __decorate([

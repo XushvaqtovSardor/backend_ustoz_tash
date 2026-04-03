@@ -1,6 +1,6 @@
 import { CreateGroupDto } from './dto/create.group.dto';
 import { Role } from '@prisma/client';
-import { PrismaService } from 'src/database/prisma.service';
+import { PrismaService } from '../../database/prisma.service';
 export declare class GroupsService {
     private prisma;
     constructor(prisma: PrismaService);
@@ -10,30 +10,30 @@ export declare class GroupsService {
     }): Promise<{
         success: boolean;
         data: {
-            id: number;
-            groupId: number;
-            title: string;
-            userId: number | null;
-            teacherId: number | null;
             created_at: Date;
             updated_at: Date;
+            id: number;
+            title: string;
+            teacherId: number | null;
+            userId: number | null;
+            groupId: number;
         }[];
     }>;
     getAllGroup(): Promise<{
         success: boolean;
         data: {
-            id: number;
-            userId: number;
-            teacherId: number;
+            status: import(".prisma/client").$Enums.Status;
             created_at: Date;
             updated_at: Date;
+            id: number;
             name: string;
+            teacherId: number;
             roomId: number;
             courseId: number;
             startDate: Date;
             startTime: string;
-            weekDays: import("@prisma/client").$Enums.WeekDays[];
-            status: import("@prisma/client").$Enums.Status;
+            weekDays: import(".prisma/client").$Enums.WeekDays[];
+            userId: number;
         }[];
     }>;
     createGroup(payload: CreateGroupDto, currentUser: {

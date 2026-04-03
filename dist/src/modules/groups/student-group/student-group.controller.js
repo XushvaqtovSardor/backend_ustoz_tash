@@ -22,7 +22,6 @@ const roles_1 = require("../../../common/decorators/roles");
 const swagger_1 = require("@nestjs/swagger");
 const client_1 = require("@prisma/client");
 let StudentGroupController = class StudentGroupController {
-    studentGroupServise;
     constructor(studentGroupServise) {
         this.studentGroupServise = studentGroupServise;
     }
@@ -41,8 +40,7 @@ __decorate([
     __param(0, (0, common_1.Body)()),
     __param(1, (0, common_1.Req)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [create_studentgroup_dto_1.CreateStudentGroupDto,
-        Request]),
+    __metadata("design:paramtypes", [create_studentgroup_dto_1.CreateStudentGroupDto, Object]),
     __metadata("design:returntype", void 0)
 ], StudentGroupController.prototype, "createStudentGroup", null);
 exports.StudentGroupController = StudentGroupController = __decorate([

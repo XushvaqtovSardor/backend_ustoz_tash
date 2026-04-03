@@ -16,7 +16,7 @@ export declare class TeachersController {
             password: string;
             position: string;
             photo: string | null;
-            status: import("@prisma/client").$Enums.UserStatus;
+            status: import(".prisma/client").$Enums.UserStatus;
             created_at: Date;
             updated_at: Date;
             id: number;
@@ -31,7 +31,7 @@ export declare class TeachersController {
             password: string;
             position: string;
             photo: string | null;
-            status: import("@prisma/client").$Enums.UserStatus;
+            status: import(".prisma/client").$Enums.UserStatus;
             created_at: Date;
             updated_at: Date;
             id: number;
@@ -42,5 +42,5 @@ export declare class TeachersController {
         success: boolean;
         message: string;
     }>;
-    deleteTeacher(id: string): void;
+    deleteTeacher(id: string): Promise<void>;
 }

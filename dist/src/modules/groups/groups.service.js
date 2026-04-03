@@ -14,7 +14,6 @@ const common_1 = require("@nestjs/common");
 const client_1 = require("@prisma/client");
 const prisma_service_1 = require("../../database/prisma.service");
 let GroupsService = class GroupsService {
-    prisma;
     constructor(prisma) {
         this.prisma = prisma;
     }

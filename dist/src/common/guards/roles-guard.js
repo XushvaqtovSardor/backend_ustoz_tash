@@ -12,16 +12,23 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.RolesGuard = void 0;
 const common_1 = require("@nestjs/common");
 const core_1 = require("@nestjs/core");
+const roles_1 = require("../decorators/roles");
 let RolesGuard = class RolesGuard {
-    reflector;
     constructor(reflector) {
         this.reflector = reflector;
     }
     canActivate(context) {
-        const { user } = context.switchToHttp().getRequest();
-        const roles = this.reflector.get("roles", context.getHandler());
-        if (!roles.includes(user.role)) {
-            throw new common_1.ForbiddenException();
+        const requiredRoles = this.reflector.getAllAndOverride(roles_1.ROLES_KEY, [
+            context.getHandler(),
+            context.getClass(),
+        ]);
+        if (!requiredRoles || requiredRoles.length === 0) {
+            return true;
+        }
+        const request = context.switchToHttp().getRequest();
+        const userRole = request.user?.role;
+        if (!userRole || !requiredRoles.includes(userRole)) {
+            throw new common_1.ForbiddenException('Forbidden resource');
         }
         return true;
     }

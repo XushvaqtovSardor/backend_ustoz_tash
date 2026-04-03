@@ -14,7 +14,6 @@ const common_1 = require("@nestjs/common");
 const prisma_service_1 = require("../prisma.service");
 const bcrypt_1 = require("../../common/config/bcrypt");
 let UserSeeder = class UserSeeder {
-    prisma;
     constructor(prisma) {
         this.prisma = prisma;
     }

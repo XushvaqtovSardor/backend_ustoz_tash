@@ -19,10 +19,10 @@ export class GroupsController {
     @Roles("ADMIN", "SUPERADMIN", "TEACHER")
     @Get("lesson/:groupId")
     getGroupLessons(
-        @Param("groupId",ParseIntPipe) groupId : number,
-        @Req() req:Request
+        @Param("groupId", ParseIntPipe) groupId: number,
+        @Req() req: any
     ) {
-        return this.groupService.getGroupLessons(groupId,req["user"])
+        return this.groupService.getGroupLessons(groupId, req["user"])
     }
 
     @UseGuards(AuthGuard, RolesGuard)
@@ -37,7 +37,7 @@ export class GroupsController {
     @Post()
     createGroup(
         @Body() payload: CreateGroupDto,
-        @Req() req: Request
+        @Req() req: any
     ) {
         return this.groupService.createGroup(payload, req["user"])
     }

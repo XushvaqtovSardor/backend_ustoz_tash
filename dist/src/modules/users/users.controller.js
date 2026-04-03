@@ -25,12 +25,11 @@ const platform_express_1 = require("@nestjs/platform-express");
 const multer_1 = require("multer");
 const update_user_dto_1 = require("./dto/update.user.dto");
 let UsersController = class UsersController {
-    userService;
     constructor(userService) {
         this.userService = userService;
     }
     createUser(payload, file) {
-        return this.userService.createUser(payload, file.filename);
+        return this.userService.createUser(payload, file?.filename);
     }
     getAllUser() {
         return this.userService.getAllUsers();
@@ -42,6 +41,7 @@ let UsersController = class UsersController {
         return this.userService.updateUser(+id, payload);
     }
     deleteUser(id) {
+        return this.userService.deleteUser(+id);
     }
 };
 exports.UsersController = UsersController;
@@ -88,14 +88,14 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "getAllUser", null);
 __decorate([
-    (0, common_1.Get)(),
+    (0, common_1.Get)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "getOneUser", null);
 __decorate([
-    (0, common_1.Put)(),
+    (0, common_1.Put)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -103,7 +103,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "updateUser", null);
 __decorate([
-    (0, common_1.Delete)(),
+    (0, common_1.Delete)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),

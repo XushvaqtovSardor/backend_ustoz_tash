@@ -6,7 +6,7 @@ export declare class RoomsController {
     getAllRoom(): Promise<{
         success: boolean;
         data: {
-            status: import("@prisma/client").$Enums.Status;
+            status: import(".prisma/client").$Enums.Status;
             created_at: Date;
             updated_at: Date;
             id: number;

@@ -10,18 +10,18 @@ import { Role } from '@prisma/client';
 @Controller('student-group')
 @ApiBearerAuth()
 export class StudentGroupController {
-    constructor(private readonly studentGroupServise : StudentGroupService){}
+    constructor(private readonly studentGroupServise: StudentGroupService) { }
 
     @ApiOperation({
-        summary:`${Role.SUPERADMIN}, ${Role.ADMIN}`
+        summary: `${Role.SUPERADMIN}, ${Role.ADMIN}`
     })
-    @UseGuards(AuthGuard,RolesGuard)
-    @Roles("ADMIN","SUPERADMIN")
+    @UseGuards(AuthGuard, RolesGuard)
+    @Roles("ADMIN", "SUPERADMIN")
     @Post()
     createStudentGroup(
-        @Body() payload : CreateStudentGroupDto,
-        @Req() req : Request
-    ){
+        @Body() payload: CreateStudentGroupDto,
+        @Req() req: any
+    ) {
         return this.studentGroupServise.createStudentGroup(payload, req["user"])
     }
 }

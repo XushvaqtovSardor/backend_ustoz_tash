@@ -22,7 +22,6 @@ const roles_1 = require("../../common/decorators/roles");
 const create_room_dto_1 = require("./dto/create.room.dto");
 const swagger_1 = require("@nestjs/swagger");
 let RoomsController = class RoomsController {
-    roomService;
     constructor(roomService) {
         this.roomService = roomService;
     }
@@ -38,6 +37,7 @@ __decorate([
     (0, common_1.UseGuards)(jwt_auth_guard_1.AuthGuard, roles_guard_1.RolesGuard),
     (0, roles_1.Roles)(client_1.Role.ADMIN, client_1.Role.SUPERADMIN),
     (0, common_1.Get)("all"),
+    (0, swagger_1.ApiOperation)({ summary: 'Get all active rooms' }),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
@@ -46,6 +46,7 @@ __decorate([
     (0, common_1.UseGuards)(jwt_auth_guard_1.AuthGuard, roles_guard_1.RolesGuard),
     (0, roles_1.Roles)(client_1.Role.ADMIN, client_1.Role.SUPERADMIN),
     (0, common_1.Post)(),
+    (0, swagger_1.ApiOperation)({ summary: 'Create new room' }),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_room_dto_1.CreateRoomDto]),
@@ -53,6 +54,7 @@ __decorate([
 ], RoomsController.prototype, "createRoom", null);
 exports.RoomsController = RoomsController = __decorate([
     (0, common_1.Controller)('rooms'),
+    (0, swagger_1.ApiTags)('Rooms'),
     (0, swagger_1.ApiBearerAuth)(),
     __metadata("design:paramtypes", [rooms_service_1.RoomsService])
 ], RoomsController);

@@ -25,12 +25,11 @@ const jwt_auth_guard_1 = require("../../common/guards/jwt-auth.guard");
 const roles_guard_1 = require("../../common/guards/roles-guard");
 const roles_1 = require("../../common/decorators/roles");
 let TeachersController = class TeachersController {
-    teachersService;
     constructor(teachersService) {
         this.teachersService = teachersService;
     }
     createTeacher(payload, file) {
-        return this.teachersService.createTeacher(payload, file.filename);
+        return this.teachersService.createTeacher(payload, file?.filename);
     }
     getAllTeacher() {
         return this.teachersService.getAllTeachers();
@@ -42,6 +41,7 @@ let TeachersController = class TeachersController {
         return this.teachersService.updateTeacher(+id, payload);
     }
     deleteTeacher(id) {
+        return this.teachersService.deleteTeacher(+id);
     }
 };
 exports.TeachersController = TeachersController;
@@ -97,7 +97,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], TeachersController.prototype, "getOneTeacher", null);
 __decorate([
-    (0, common_1.Put)(),
+    (0, common_1.Put)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -105,7 +105,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], TeachersController.prototype, "updateTeacher", null);
 __decorate([
-    (0, common_1.Delete)(),
+    (0, common_1.Delete)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
