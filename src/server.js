@@ -5,6 +5,8 @@ import errorHandler from "./utils/error.handler.js";
 import indexRouter from "./routers/index.js";
 import cors from "cors";
 import { randomUUID } from "crypto";
+import swaggerUi from "swagger-ui-express";
+import { openApiDocument } from "./common/config/openapi.js";
 config();
 
 const app = express();
@@ -35,6 +37,14 @@ app.use(indexRouter.fileRouter);
 // app.use(indexRouter.messageRouter);
 // app.use(indexRouter.otpRouter);
 
+app.get("/api", (req, res) => {
+    res.redirect("/api/docs");
+});
+
+app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(openApiDocument, {
+    explorer: true,
+}));
+
 app.use((req, res, next) => {
     const error = new Error(`Route not found: ${req.method} ${req.originalUrl}`);
     error.status = 404;
@@ -43,4 +53,5 @@ app.use((req, res, next) => {
 
 app.use(errorHandler);
 
-app.listen(process.env.PORT, () => console.log("Server is running"));
+const port = Number(process.env.PORT) || 3000;
+app.listen(port, () => console.log(`Server is running on port ${port}`));
