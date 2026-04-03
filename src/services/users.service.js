@@ -13,7 +13,11 @@ import {
 class UserService {
   async register(body, files, next) {
 
-    const { username, password, email } = body;
+    const { username, password, email } = body || {};
+
+    if (!username || !email || !password) {
+      throw new BadRequestError(400, "username, email, password majburiy")
+    }
 
     if (!files || !files.file) {
       throw new BadRequestError(400, "file yuborilishi shart")
@@ -69,7 +73,11 @@ class UserService {
   }
 
   async login(body, next) {
-    const { username, password } = body;
+    const { username, password } = body || {};
+
+    if (!username || !password) {
+      throw new BadRequestError(400, "username va password majburiy")
+    }
 
     const existUser = await pool.query(
       "select * from users where username=$1",

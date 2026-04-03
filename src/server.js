@@ -7,6 +7,7 @@ import cors from "cors";
 import { randomUUID } from "crypto";
 import swaggerUi from "swagger-ui-express";
 import { openApiDocument } from "./common/config/openapi.js";
+import { initDatabase } from "./database/config.js";
 config();
 
 const app = express();
@@ -69,4 +70,10 @@ app.use((req, res, next) => {
 app.use(errorHandler);
 
 const port = Number(process.env.PORT) || 3000;
-app.listen(port, () => console.log(`Server is running on port ${port}`));
+
+async function startServer() {
+    await initDatabase();
+    app.listen(port, () => console.log(`Server is running on port ${port}`));
+}
+
+startServer().catch(() => process.exit(1));

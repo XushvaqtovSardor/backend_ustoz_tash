@@ -97,7 +97,11 @@ class FileService {
   }
 
   async createFile(req, next) {
-    const { title, userId } = req.body;
+    const { title, userId } = req.body || {};
+
+    if (!title || !userId) {
+      throw new BadRequestError(400, "title va userId majburiy")
+    }
 
     if (!req.files || !req.files.file) {
       throw new BadRequestError(400, "file yuborilishi shart")
@@ -156,7 +160,11 @@ class FileService {
   }
 
   async fileUpdate(req, next) {
-    const { fileId, userId, title } = req.body;
+    const { fileId, userId, title } = req.body || {};
+
+    if (!fileId || !userId || !title) {
+      throw new BadRequestError(400, "title, fileId, userId majburiy")
+    }
 
     const existFile = await pool.query(
       "select * from files where id=$1 and user_id=$2",
@@ -175,7 +183,11 @@ class FileService {
   }
 
   async deleteFile(req, next) {
-    const { fileId, userId } = req.body;
+    const { fileId, userId } = req.body || {};
+
+    if (!fileId || !userId) {
+      throw new BadRequestError(400, "fileId va userId majburiy")
+    }
 
     const existFile = await pool.query(
       "select * from files where id=$1 and user_id=$2",

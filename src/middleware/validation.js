@@ -21,7 +21,7 @@ class UserMiddleware {
       }
       next();
     } catch (error) {
-        next(error)
+      next(error)
     }
   };
 
@@ -33,7 +33,7 @@ class UserMiddleware {
       }
       next();
     } catch (error) {
-        next(error)
+      next(error)
     }
   };
 
@@ -45,10 +45,22 @@ class UserMiddleware {
       }
       next();
     } catch (error) {
-        next(error)
+      next(error)
     }
   };
 
-} 
+  deleteFile = (req, res, next) => {
+    try {
+      const { error } = validations.deleteFileSchema.validate(req.body);
+      if (error) {
+        throw new BadRequestError(400, error.details[0].message);
+      }
+      next();
+    } catch (error) {
+      next(error)
+    }
+  };
+
+}
 
 export default new UserMiddleware();

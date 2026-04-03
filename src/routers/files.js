@@ -5,18 +5,18 @@ import validation from '../middleware/validation.js'
 const router = Router()
 
 router
-    .post("/api/files",validation.files,fileController.createFile)
+    .post("/api/files", validation.files, fileController.createFile)
 
-    .get("/api/files/oneUser/:userId",fileController.getUserFiles)
+    .get("/api/files/oneUser/:userId", fileController.getUserFiles)
 
-    .get("/api/files/all",fileController.getAllFiles)
+    .get("/api/files/all", fileController.getAllFiles)
 
     .get('/file/:file_name', fileController.getFile)
 
-    .get("/api/file/download/:file_name",fileController.download)
+    .get("/api/file/download/:file_name", fileController.download)
 
-    .put("/api/files",validation.title,fileController.fileUpdate)
+    .put("/api/files", validation.title, fileController.fileUpdate)
 
-    .delete("/api/files",fileController.deleteFile)
+    .delete("/api/files", validation.deleteFile, fileController.deleteFile)
 
 export default router
