@@ -1,0 +1,38 @@
+
+[Thu Jan 08 2026 12:31:58 GMT+0500 (Uzbekistan Standard Time)]--POST--/api/register--validations.registerSchema.validat is not a function
+[Thu Jan 08 2026 12:38:08 GMT+0500 (Uzbekistan Standard Time)]--POST--/api/register--a is not defined
+[Thu Jan 08 2026 12:39:33 GMT+0500 (Uzbekistan Standard Time)]--[InternalServerError]--POST--/api/register--a is not defined
+[Thu Jan 08 2026 12:40:09 GMT+0500 (Uzbekistan Standard Time)]--[Error]--POST--/api/register--a is not defined
+[Thu Jan 08 2026 12:41:52 GMT+0500 (Uzbekistan Standard Time)]--[Error]--POST--/api/register--ReferenceError: a is not defined
+[Fri Jan 09 2026 10:40:57 GMT+0500 (Uzbekistan Standard Time)]--POST--/api/register--undefined
+[Fri Jan 09 2026 10:41:54 GMT+0500 (Uzbekistan Standard Time)]--POST--/api/register--undefined
+[Fri Jan 09 2026 10:43:38 GMT+0500 (Uzbekistan Standard Time)]--POST--/api/register--a is not defined
+[Fri Jan 09 2026 10:44:48 GMT+0500 (Uzbekistan Standard Time)]--POST--/api/register--a is not defined
+[Fri Jan 09 2026 10:46:44 GMT+0500 (Uzbekistan Standard Time)]--POST--/api/register--a is not defined
+[Fri Jan 09 2026 10:47:29 GMT+0500 (Uzbekistan Standard Time)]--POST--/api/register--ReferenceError: a is not defined
+[Sat Jan 10 2026 09:37:33 GMT+0500 (Uzbekistan Standard Time)]--GET--/api/files/oneUser--TokenExpiredError: jwt expired
+[Mon Jan 12 2026 10:41:00 GMT+0500 (Uzbekistan Standard Time)]--GET--/api/files/all--ReferenceError: getAllFiles is not defined
+[Mon Jan 12 2026 10:42:07 GMT+0500 (Uzbekistan Standard Time)]--GET--/api/files/all--ReferenceError: getAllFiles is not defined
+[Mon Jan 12 2026 10:52:19 GMT+0500 (Uzbekistan Standard Time)]--GET--/api/files/all?title=salom--TypeError: Cannot read properties of undefined (reading 'rows')
+[Mon Jan 12 2026 10:55:27 GMT+0500 (Uzbekistan Standard Time)]--GET--/api/files/all?title=salom--error: syntax error at or near "inner"
+[Mon Jan 12 2026 10:56:49 GMT+0500 (Uzbekistan Standard Time)]--GET--/api/files/all?title=salom--error: syntax error at or near "inner"
+[Wed Jan 14 2026 12:07:13 GMT+0500 (Uzbekistan Standard Time)]--POST--/send--Error: ENOENT: no such file or directory, open '/Users/abduxoshimsultonqulov/Groups/N26/3-oy/3-dars/backend/src/database/otp.json'
+[Wed Jan 14 2026 12:07:39 GMT+0500 (Uzbekistan Standard Time)]--POST--/send--Error: ENOENT: no such file or directory, open '/Users/abduxoshimsultonqulov/Groups/N26/3-oy/3-dars/backend/src/database/otp.json'
+[Wed Jan 14 2026 12:20:36 GMT+0500 (Uzbekistan Standard Time)]--POST--/api/register--error: null value in column "email" of relation "users" violates not-null constraint
+[Mon Jan 19 2026 10:32:04 GMT+0500 (Uzbekistan Standard Time)]--POST--/api/register--error: null value in column "socketId" of relation "users" violates not-null constraint
+[Mon Jan 19 2026 10:32:09 GMT+0500 (Uzbekistan Standard Time)]--POST--/api/register--error: null value in column "socketId" of relation "users" violates not-null constraint
+[Mon Jan 19 2026 10:32:43 GMT+0500 (Uzbekistan Standard Time)]--POST--/api/register--error: null value in column "socketId" of relation "users" violates not-null constraint
+[Mon Jan 19 2026 11:50:31 GMT+0500 (Uzbekistan Standard Time)]--POST--/api/message/1--TypeError: Cannot destructure property 'message' of 'req.body' as it is undefined.
+[Mon Jan 19 2026 11:54:52 GMT+0500 (Uzbekistan Standard Time)]--POST--/api/message/1--TypeError: Cannot destructure property 'file' of 'req.files' as it is undefined.
+[Mon Jan 19 2026 11:55:21 GMT+0500 (Uzbekistan Standard Time)]--POST--/api/message/1--TypeError: Cannot destructure property 'file' of '(intermediate value)' as it is undefined.
+[Mon Jan 19 2026 12:00:51 GMT+0500 (Uzbekistan Standard Time)]--POST--/api/message/1--TypeError: Cannot read properties of undefined (reading 'message')
+[Tue Jan 20 2026 10:02:13 GMT+0500 (Uzbekistan Standard Time)]--POST--/api/message/5--TypeError: Cannot read properties of undefined (reading 'message')
+[Tue Jan 20 2026 11:44:45 GMT+0500 (Uzbekistan Standard Time)]--POST--/api/message/5--error: null value in column "message" of relation "messages" violates not-null constraint
+[Tue Jan 20 2026 11:46:42 GMT+0500 (Uzbekistan Standard Time)]--POST--/api/message/5--error: null value in column "message" of relation "messages" violates not-null constraint
+[Tue Jan 20 2026 11:48:42 GMT+0500 (Uzbekistan Standard Time)]--POST--/api/message/4--error: null value in column "message" of relation "messages" violates not-null constraint
+[Fri Apr 03 2026 15:21:37 GMT+0500 (Uzbekistan Standard Time)]--POST--/api/register--error: INSERT has more expressions than target columns
+[Fri Apr 03 2026 15:22:40 GMT+0500 (Uzbekistan Standard Time)]--POST--/api/register--error: bind message supplies 3 parameters, but prepared statement "" requires 4
+[Fri Apr 03 2026 15:25:05 GMT+0500 (Uzbekistan Standard Time)]--GET--/api/files/oneUser--TypeError: Cannot read properties of undefined (reading 'id')
+[Fri Apr 03 2026 15:37:02 GMT+0500 (Uzbekistan Standard Time)]--DELETE--/api/files/1--TypeError: Cannot destructure property 'id' of 'req.user' as it is undefined.
+[Fri Apr 03 2026 15:42:32 GMT+0500 (Uzbekistan Standard Time)]--PUT--/api/files/1--TypeError: Cannot destructure property 'id' of 'req.user' as it is undefined.
+[Fri Apr 03 2026 15:44:13 GMT+0500 (Uzbekistan Standard Time)]--PUT--/api/files--ReferenceError: id is not defined
