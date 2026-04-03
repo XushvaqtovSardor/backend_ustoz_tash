@@ -4,6 +4,7 @@ import { join } from "path";
 export default (error, req, res, next) => {
     const status = error?.status && Number.isInteger(error.status) ? error.status : 500;
     const level = status >= 500 ? "ERROR" : "WARN";
+    const showInternalError = process.env.SHOW_INTERNAL_ERROR === "true";
 
     const logPayload = {
         at: new Date().toISOString(),
@@ -33,7 +34,7 @@ export default (error, req, res, next) => {
 
     return res.status(status).json({
         status,
-        message: status >= 500 ? "InternalServerError" : logPayload.message,
+        message: status >= 500 && !showInternalError ? "InternalServerError" : logPayload.message,
         name: logPayload.name,
         requestId: req.requestId,
     });

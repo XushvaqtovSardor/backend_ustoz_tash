@@ -32,6 +32,21 @@ app.use((req, res, next) => {
 app.use(express.json());
 app.use(cors());
 app.use(fileUpload());
+
+app.get("/", (req, res) => {
+    res.status(200).json({
+        status: "ok",
+        message: "Service is running",
+        docs: "/api/docs",
+    });
+});
+
+app.get("/health", (req, res) => {
+    res.status(200).json({
+        status: "ok",
+    });
+});
+
 app.use(indexRouter.userRouter);
 app.use(indexRouter.fileRouter);
 // app.use(indexRouter.messageRouter);

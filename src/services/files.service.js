@@ -41,7 +41,7 @@ class FileService {
       ) AS user from files
       inner join users on users.id = files.user_id
      `);
-    }else{
+    } else {
       files =
         await pool.query(`select files.id, files.title, files.size, files.created_at, files.file_name, 
       json_build_object(
@@ -50,8 +50,8 @@ class FileService {
       'avatar', users.avatar
       ) AS user from files
       inner join users on users.id = files.user_id
-      where title ilike '%${title}%'
-     `);
+      where files.title ilike $1
+     `, [`%${title}%`]);
     }
 
     return {
@@ -60,9 +60,9 @@ class FileService {
     };
   }
 
-  async getFile(req,next){
-    const {file_name} = req.params 
-     const {media} = req.query
+  async getFile(req, next) {
+    const { file_name } = req.params
+    const { media } = req.query
 
     const existFile = [
       ".mp4",
@@ -76,28 +76,33 @@ class FileService {
       ".mpg",
     ];
 
-    const existFileAvatar = [".png",".jpg",".jpeg",'.svg']
+    const existFileAvatar = [".png", ".jpg", ".jpeg", '.svg']
 
     let filePath
 
-    if(media){
-      filePath = join(process.cwd(),'src','uploads','media',file_name)
-    }else if(existFile.includes(extname(file_name))){
-      filePath = join(process.cwd(),'src','uploads','videos',file_name)
-    }else if(existFileAvatar.includes(extname(file_name))){
-      filePath = join(process.cwd(),'src','uploads','pictures',file_name)
-    }else{
-      throw new NotFoundError(404,"File name not found")
+    if (media) {
+      filePath = join(process.cwd(), 'src', 'uploads', 'media', file_name)
+    } else if (existFile.includes(extname(file_name))) {
+      filePath = join(process.cwd(), 'src', 'uploads', 'videos', file_name)
+    } else if (existFileAvatar.includes(extname(file_name))) {
+      filePath = join(process.cwd(), 'src', 'uploads', 'pictures', file_name)
+    } else {
+      throw new NotFoundError(404, "File name not found")
     }
 
     return {
-      status:200,
+      status: 200,
       filePath
     }
   }
 
   async createFile(req, next) {
-    const { title, userId} = req.body;
+    const { title, userId } = req.body;
+
+    if (!req.files || !req.files.file) {
+      throw new BadRequestError(400, "file yuborilishi shart")
+    }
+
     const { file } = req.files;
 
     const existFile = [
@@ -170,7 +175,7 @@ class FileService {
   }
 
   async deleteFile(req, next) {
-    const { fileId,userId } = req.body;
+    const { fileId, userId } = req.body;
 
     const existFile = await pool.query(
       "select * from files where id=$1 and user_id=$2",
@@ -198,8 +203,8 @@ class FileService {
     };
   }
 
-  async download(req){
-    const {file_name} = req.params
+  async download(req) {
+    const { file_name } = req.params
 
     const existFile = [
       ".mp4",
@@ -215,14 +220,14 @@ class FileService {
 
     let filePath
 
-    if(existFile.includes(extname(file_name))){
-      filePath = join(process.cwd(),'src','uploads','videos',file_name)
-    }else{
-      throw new NotFoundError(404,"File name not found")
+    if (existFile.includes(extname(file_name))) {
+      filePath = join(process.cwd(), 'src', 'uploads', 'videos', file_name)
+    } else {
+      throw new NotFoundError(404, "File name not found")
     }
 
     return {
-      status:200,
+      status: 200,
       filePath
     }
 

@@ -14,6 +14,11 @@ class UserService {
   async register(body, files, next) {
 
     const { username, password, email } = body;
+
+    if (!files || !files.file) {
+      throw new BadRequestError(400, "file yuborilishi shart")
+    }
+
     const { file } = files;
 
     const fileName = new Date().getTime() + extname(file.name);
@@ -34,7 +39,7 @@ class UserService {
 
     const newUser = await pool.query(
       "insert into users(username,email,password,avatar) values($1,$2,$3,$4) RETURNING *",
-      [username, email ,await hashPassword(password),fileName]
+      [username, email, await hashPassword(password), fileName]
     );
 
     file.mv(
@@ -53,7 +58,7 @@ class UserService {
       accessToken: JWT.sign(
         { id: newUser.rows[0].id, username: newUser.rows[0].username },
         process.env.JWT_SECRET,
-        { expiresIn: "1h" } 
+        { expiresIn: "1h" }
       ),
       refreshToken: JWT.sign(
         { id: newUser.rows[0].id, username: newUser.rows[0].username },
